@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --color-background: #FAFBFC; /* gray-50 */
+    --color-foreground: #1E293B; /* slate-800 */
+    --color-card: #F8FAFC; /* slate-50 */
+    --color-card-foreground: #1E293B; /* slate-800 */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1E293B; /* slate-800 */
+    --color-muted: #F1F5F9; /* slate-100 */
+    --color-muted-foreground: #64748B; /* slate-500 */
+    
+    /* Primary Colors */
+    --color-primary: #2563EB; /* blue-600 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #64748B; /* slate-500 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #059669; /* emerald-600 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* State Colors */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Border and Input Colors */
+    --color-border: #E2E8F0; /* slate-200 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #2563EB; /* blue-600 */
+    
+    /* Brand Colors */
+    --color-brand-primary: #2563EB; /* blue-600 */
+    --color-brand-secondary: #7C3AED; /* violet-600 */
+    --color-brand-accent: #059669; /* emerald-600 */
+    --color-trust-builder: #0F172A; /* slate-900 */
+    --color-conversion-accent: #DC2626; /* red-600 */
+    
+    /* Text Colors */
+    --color-text-primary: #1E293B; /* slate-800 */
+    --color-text-secondary: #64748B; /* slate-500 */
+    
+    /* Surface Colors */
+    --color-surface: #F8FAFC; /* slate-50 */
+    --color-surface-elevated: #FFFFFF; /* white */
+    
+    /* Spacing System */
+    --space-unit: 0.5rem;
+    
+    /* Shadow System */
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-moderate: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-elevated: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.08);
+    
+    /* Animation Timing */
+    --transition-fast: 200ms;
+    --transition-normal: 300ms;
+    --transition-slow: 400ms;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Intelligent Spacing System */
+  .space-xs { margin: calc(var(--space-unit) * 1); }
+  .space-sm { margin: calc(var(--space-unit) * 2); }
+  .space-md { margin: calc(var(--space-unit) * 3); }
+  .space-lg { margin: calc(var(--space-unit) * 4); }
+  .space-xl { margin: calc(var(--space-unit) * 6); }
+  .space-2xl { margin: calc(var(--space-unit) * 8); }
+
+  /* Shadow Utilities */
+  .shadow-subtle { box-shadow: var(--shadow-subtle); }
+  .shadow-moderate { box-shadow: var(--shadow-moderate); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+
+  /* Brand Gradient */
+  .gradient-brand {
+    background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+  }
+
+  /* Conversion Elements */
+  .cta-primary {
+    @apply bg-conversion-accent text-white hover:bg-red-700 transition-colors duration-300;
+  }
+
+  .cta-secondary {
+    @apply border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300;
+  }
+
+  /* Interactive States */
+  .interactive-hover {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Progressive Disclosure */
+  .reveal-animation {
+    @apply opacity-0 translate-y-5 transition-all duration-300;
+  }
+
+  .reveal-animation.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Enterprise Grid System */
+  .grid-enterprise {
+    @apply grid grid-cols-12 gap-6;
+  }
+
+  .grid-admin {
+    @apply col-span-12;
+  }
+
+  .grid-manager {
+    @apply col-span-8;
+  }
+
+  .grid-employee {
+    @apply col-span-4;
+  }
+
+  /* Role-based Color Intensity */
+  .intensity-admin {
+    filter: saturate(100%);
+  }
+
+  .intensity-manager {
+    filter: saturate(85%);
+  }
+
+  .intensity-employee {
+    filter: saturate(70%);
+  }
+
+  /* Flow State Navigation */
+  .flow-breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-muted-foreground;
+  }
+
+  .flow-breadcrumb svg {
+    @apply w-4 h-4;
+  }
+
+  /* Collaborative Presence */
+  .presence-indicator {
+    @apply relative inline-block w-8 h-8 rounded-full border-2 border-white shadow-sm;
+  }
+
+  .presence-online {
+    @apply border-green-400;
+  }
+
+  .presence-away {
+    @apply border-yellow-400;
+  }
+
+  .presence-offline {
+    @apply border-gray-300;
+  }
+}
+
+@layer utilities {
+  /* Dynamic Spacing */
+  .spacing-dynamic {
+    padding: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  /* Thumb-friendly Mobile */
+  .thumb-zone {
+    @apply sticky bottom-4 z-50;
+  }
+
+  /* Performance Optimized Animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Accessibility Enhancements */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* Brand Typography Weights */
+  .font-brand-headline {
+    @apply font-inter font-bold; /* 700 */
+  }
+
+  .font-brand-value {
+    @apply font-inter font-semibold; /* 600 */
+  }
+
+  .font-brand-body {
+    @apply font-inter font-normal; /* 400 */
+  }
+
+  .font-brand-cta {
+    @apply font-inter font-semibold; /* 600 */
+  }
+
+  /* Conversion Optimized Elements */
+  .conversion-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .hero-grid {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-8 items-center;
+  }
+
+  .hero-content {
+    @apply lg:col-span-7;
+  }
+
+  .hero-visual {
+    @apply lg:col-span-5;
+  }
+
+  /* Mobile Optimization */
+  .mobile-stack {
+    @apply flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4;
+  }
+
+  /* Enterprise Authority */
+  .enterprise-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-muted text-muted-foreground;
+  }
+
+  /* Social Proof Elements */
+  .testimonial-card {
+    @apply bg-card rounded-lg p-6 shadow-subtle border border-border;
+  }
+
+  .client-logo {
+    @apply grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100;
+  }
+}
